@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaflet.CanvasMask example</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+  <style> 
+    html, body, #map { height: 100%; padding: 0; margin: 0;}
+    .canvas-layer .leaflet-tile-container:first-child {
+      /* This prevents masks from being drawn twice at the same time, which is bad */
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="index.js"></script>
+  <script>
+
+    var map = L.map('map').setView([39.990, -124.651], 7);
+
+    L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery <a href="http://stamen.com">Stamen</a>'
+    }).addTo(map);
+
+    //var humboldt = {"type":"FeatureCollection","properties":{},"features":[{"type":"Feature","properties":{},"geometry":{"type":"MultiPolygon","coordinates":[[[[-124.0548,41.4640],[-123.7700,41.4640],[-123.7700,41.3818],[-123.6605,41.3818],[-123.4742,41.3654],[-123.4578,41.2339],[-123.4085,41.1792],[-123.4414,41.0915],[-123.4633,41.0970],[-123.4085,41.0313],[-123.4469,40.9437],[-123.4797,40.9163],[-123.5619,40.9491],[-123.6221,40.9272],[-123.5619,40.8396],[-123.5454,40.7355],[-123.5454,40.0016],[-124.0219,40.0016],[-124.0822,40.0290],[-124.1096,40.1057],[-124.3615,40.2590],[-124.3506,40.3138],[-124.4108,40.4398],[-124.1370,40.9272],[-124.1096,41.0258],[-124.1534,41.0532],[-124.1643,41.1299],[-124.1096,41.2285],[-124.0658,41.4640]]]]}}]};
+
+    var humboldt = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[-116,34],[-116,43],[-81,43],[-81,34],[-116,34]]]}}]};
+
+    L.tileLayer.canvasMask({
+      maskColor: 'rgba(0, 0, 0, 0.8)',
+      maskData: humboldt
+    }).addTo(map);
+
+  </script>
+</body>
+</html>
