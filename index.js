@@ -31,6 +31,8 @@ L.tileLayer.CanvasMask = L.TileLayer.Canvas.extend({
   drawTile: function(canvas, tilePoint, zoom) {
     var context = canvas.getContext('2d');
 
+    var width = canvas.width, height = canvas.height;
+
     context.clearRect(0, 0, width, height);
 
     if (!this.options.maskData) return;
@@ -58,8 +60,6 @@ L.tileLayer.CanvasMask = L.TileLayer.Canvas.extend({
     dataBounds = L.bounds([dataBounds[0][0], dataBounds[1][1]], [dataBounds[1][0], dataBounds[0][1]]);
 
     var intersects = tileBounds.intersects(dataBounds);
-
-    var width = canvas.width, height = canvas.height;
 
     context.fillStyle = this.options.maskColor;
     context.globalCompositeOperation = "source-over";
