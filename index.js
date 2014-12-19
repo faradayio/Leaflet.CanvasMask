@@ -61,9 +61,7 @@ L.tileLayer.CanvasMask = L.TileLayer.Canvas.extend({
 
     var intersects = tileBounds.intersects(dataBounds);
 
-    context.fillStyle = this.options.maskColor;
-    context.globalCompositeOperation = "source-over";
-    context.fillRect(0, 0, width, height);
+    this.drawMask(canvas, context);
 
     if (!intersects) return;
 
@@ -84,23 +82,29 @@ L.tileLayer.CanvasMask = L.TileLayer.Canvas.extend({
       }
     });
 
+    var clip = d3.geo.clipExtent()
+      .extent([[-8, -8], [width+8, height+8]]);
+
     var path = d3.geo.path()
-      .projection(projection)
+      .projection({stream: function(s) { return projection.stream(clip.stream(s)); }})
       .context(context);
 
-    context.clearRect(0, 0, width, height);
-
-    if (!this.options.maskData) return;
-
+    this.drawData(canvas, context, path);
+  },
+  drawMask: function(canvas, context){
     context.fillStyle = this.options.maskColor;
     context.globalCompositeOperation = "source-over";
-    context.fillRect(0, 0, width, height);
+    context.fillRect(0, 0, canvas.width, canvas.height);
+  },
+  drawData: function(canvas, context, path){
+    if (!this.options.maskData) return;
 
     context.globalCompositeOperation = "destination-out";
 
     context.beginPath();
     path(this.options.maskData);
     context.closePath();
+
     context.fillStyle = "black";
     context.fill();
   }
