@@ -25,7 +25,7 @@ var bigRectangle = {"type":"FeatureCollection","features":[{"type":"Feature","pr
 
 var maskLayer = L.tileLayer.canvasMask({
   maskColor: 'rgba(0, 0, 0, 0.8)',
-  bigRectangle
+  maskData: bigRectangle
 });
 
 maskLayer.addTo(map);
