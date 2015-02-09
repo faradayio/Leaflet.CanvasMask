@@ -20,7 +20,7 @@ L.tileLayer.canvasMask({
 }).addTo(map);
 ```
 
-```
+```javascript
 var bigRectangle = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[-116,34],[-116,43],[-81,43],[-81,34],[-116,34]]]}}]};
 
 var maskLayer = L.tileLayer.canvasMask({
