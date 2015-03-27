@@ -1,7 +1,7 @@
 {
   "name": "Leaflet.CanvasMask",
   "main": "index.js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://github.com/faradayio/Leaflet.CanvasMask",
   "authors": [
     "Tristan Davies <github@tristan.io>"

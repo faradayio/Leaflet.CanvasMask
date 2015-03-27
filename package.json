@@ -1,6 +1,6 @@
 {
   "name": "leaflet-canvasmask",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Mask geojson stuff with canvas and stuff",
   "main": "index.js",
   "repository": {
