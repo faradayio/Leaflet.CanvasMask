@@ -8,7 +8,7 @@
 		}
   } else {
     // Global Variables
-    root.L.TileLayer.CanvasMask = factory(root.L);
+    root.L.tileLayer.CanvasMask = factory(root.L);
   }
 }(this, function (L) {
 	// L.tileLayer.CanvasMask =
